@@ -1,1 +1,1 @@
-theme uploads
+<?php get_header(); ?>
