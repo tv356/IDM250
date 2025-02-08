@@ -9,9 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_directory') ?>/main.css" />
-	
+<?php wp_head(); ?>	
 </head>
-<body>
+<body <?php body_class(); ?> <?php wp_body_open(); ?>>
     <header>
         <div class="box_header">
             <div class="logo">
@@ -19,7 +19,7 @@
             </div>
             <div class="main_menu">
                 <ul>
-                    <li><a href="<?php bloginfo('siteurl'); ?>">Word</a></li>
+                    <li><a href="<?php bloginfo('siteurl'); ?>">World</a></li>
                     <li><a href="<?php bloginfo('siteurl'); ?>">About</a></li>
                     <li><a href="<?php bloginfo('siteurl'); ?>">Contact</a></li>
                 </ul>
