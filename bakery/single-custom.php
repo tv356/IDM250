@@ -31,11 +31,34 @@ get_header(); ?>
         margin-bottom: 20px;
     }
 
-    /* Post Content */
-    .post-content {
+    /* Post Content Container (Split Layout) */
+    .post-content-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    /* Content Section */
+    .post-text {
+        flex: 1;
         font-size: 18px;
         line-height: 1.8;
-        margin-bottom: 40px;
+    }
+
+    /* Full-Size Image Section */
+    .post-image {
+        flex: 0 0 50%; /* Set image container to 50% width */
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .post-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* This ensures the image is cropped and fits within the container */
+        object-position: center; /* Keeps the center of the image as the focal point */
     }
 
     /* Quote Banner */
@@ -119,6 +142,7 @@ get_header(); ?>
     .custom-post-container {
         padding: 0 20px;
     }
+
     body {
         padding: 5vw;
     }
@@ -136,9 +160,22 @@ get_header(); ?>
         <span>By <?php the_author(); ?> | <?php the_date(); ?></span>
     </div>
 
-    <!-- Post Content -->
-    <div class="post-content">
-        <?php the_content(); ?>
+    <!-- Post Content Section (Text and Image Split Layout) -->
+    <div class="post-content-container">
+        <!-- Post Text Section -->
+        <div class="post-text">
+            <?php the_content(); ?>
+        </div>
+
+        <!-- Full Thumbnail Image -->
+        <div class="post-image">
+            <?php
+            // Check if the post has a featured image
+            if (has_post_thumbnail()) :
+                the_post_thumbnail('full'); // Display the featured image at full size
+            endif;
+            ?>
+        </div>
     </div>
 
     <!-- Quote Box -->
