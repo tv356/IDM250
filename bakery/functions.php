@@ -3,10 +3,10 @@
 function display_custom_products_shortcode($atts) {
     ob_start();
 
-    // Lấy danh sách sản phẩm
+
     $args = array(
         'post_type'      => 'custom_product',
-        'posts_per_page' => -1, // Hiển thị tất cả sản phẩm
+        'posts_per_page' => -1, 
         'post_status'    => 'publish',
     );
 
@@ -20,11 +20,11 @@ function display_custom_products_shortcode($atts) {
             $product_id = get_the_ID();
             $product_title = get_the_title();
             $product_url = get_permalink();
-            $product_image = get_the_post_thumbnail_url($product_id, 'woocommerce_thumbnail') ?: 'https://via.placeholder.com/358x451'; // Ảnh mặc định
-            $product_price = get_post_meta($product_id, '_custom_product_price', true) ?: 'Liên hệ'; // Lấy giá sản phẩm nếu có
+            $product_image = get_the_post_thumbnail_url($product_id, 'woocommerce_thumbnail') ?: 'https://via.placeholder.com/358x451';
+            $product_price = get_post_meta($product_id, '_custom_product_price', true) ?: 'Liên hệ'; 
 			
 			
-            $currency_symbol = '₫'; // Đơn vị tiền tệ
+            $currency_symbol = '₫'; 
 
             ?>
             <li class="product type-product">
@@ -47,7 +47,7 @@ function display_custom_products_shortcode($atts) {
         echo '</div></div></ul>';
         wp_reset_postdata();
     } else {
-        echo '<p>Không có sản phẩm nào.</p>';
+        echo '<p>No products.</p>';
     }
 
     return ob_get_clean();
@@ -85,8 +85,8 @@ function hw_custom_post_type_args( $args, $post_type ) {
 add_filter( 'register_post_type_args', 'hw_custom_post_type_args', 200, 2 );
 
 function hw_modify_timeline_menu_icon( $post_type, $args ) {
-    // Make sure we're only editing the post type we want
-    if ( 'post' != $post_type )
+
+	if ( 'post' != $post_type )
         return;
 
 	global $wp_post_types;
@@ -150,7 +150,7 @@ function get_primary_category($category){
 add_filter('add_to_cart_redirect', 'custom_add_to_cart_redirect');
  
 function custom_add_to_cart_redirect() {
-     return get_permalink(get_option('woocommerce_cart_page_id')); // Replace with the url of your choosing
+     return get_permalink(get_option('woocommerce_cart_page_id')); 
 }
 ?>
 
@@ -167,8 +167,6 @@ add_action('init','theme_setup');
 
 
 
-
-// 1️⃣ Register Custom Post Type "Custom Products"
 function create_custom_product_post_type() {
     $args = array(
         'label'         => 'Products',
@@ -182,7 +180,6 @@ function create_custom_product_post_type() {
 }
 add_action('init', 'create_custom_product_post_type');
 
-// 2️⃣ Register Taxonomies: Categories & Brands
 function create_custom_product_taxonomies() {
     // Product Categories
     register_taxonomy('custom_product_category', 'custom_product', array(
@@ -200,7 +197,7 @@ function create_custom_product_taxonomies() {
 }
 add_action('init', 'create_custom_product_taxonomies');
 
-// 3️⃣ Add Custom Meta Box for Price
+
 function custom_product_custom_fields() {
     add_meta_box('custom_product_price', 'Price', 'custom_product_price_callback', 'custom_product', 'side');
 }
@@ -218,7 +215,7 @@ function save_custom_product_price($post_id) {
 }
 add_action('save_post', 'save_custom_product_price');
 
-// 4️⃣ Add Image Upload to Product Category
+
 function add_custom_product_category_fields($term) {
     $image_id = get_term_meta($term->term_id, 'custom_product_category_image', true);
     $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
@@ -242,7 +239,7 @@ function add_custom_product_category_fields($term) {
 add_action('custom_product_category_add_form_fields', 'add_custom_product_category_fields');
 add_action('custom_product_category_edit_form_fields', 'add_custom_product_category_fields');
 
-// Save Category Image
+
 function save_custom_product_category_image($term_id) {
     if (isset($_POST['custom_product_category_image'])) {
         update_term_meta($term_id, 'custom_product_category_image', absint($_POST['custom_product_category_image']));
@@ -253,13 +250,13 @@ add_action('create_custom_product_category', 'save_custom_product_category_image
 
 function custom_product_category_scripts($hook) {
     if (isset($_GET['taxonomy']) && $_GET['taxonomy'] === 'custom_product_category') {
-        wp_enqueue_media(); // Nạp thư viện Media Uploader
+        wp_enqueue_media(); 
         wp_enqueue_script('custom-product-category-script', get_template_directory_uri() . '/assets/js/custom-category.js', array('jquery', 'wp-util', 'wp-mediaelement', 'media-views'), null, true);
     }
 }
 add_action('admin_enqueue_scripts', 'custom_product_category_scripts');
 function enqueue_bakery_template_css() {
-    if (is_page_template('bakery-template-01.php')) { // Change 'bakery-template-01.php' to the actual template file name
+    if (is_page_template('bakery-template-01.php')) { 
         wp_enqueue_style('custom-bakery-template-style', get_template_directory_uri() . '/assets/css/bakery-template-01.css');
     }
 }
