@@ -147,6 +147,32 @@ get_header(); ?>
             text-align: justify;
         }
 
+        /* YouTube Links Section */
+        .youtube-links {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .youtube-link-card {
+            flex: 1;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .youtube-link-card:hover {
+            transform: scale(1.05);
+        }
+
+        .youtube-link-card iframe {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+        }
+
         /* Footer and Tags Section */
         .bakery-tags {
             margin-top: 40px;
@@ -190,6 +216,19 @@ get_header(); ?>
             <!-- Quote Block Section -->
             <div class="quote-banner">
                 <p>"Baking is not just a science, it's an art that creates a piece of happiness with every bite!"</p>
+            </div>
+
+            <!-- YouTube Video Links Section -->
+            <div class="youtube-links">
+                <div class="youtube-link-card">
+                    <iframe src="https://www.youtube.com/embed/Pw3ZIhonkzU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="youtube-link-card">
+                    <iframe src="https://www.youtube.com/embed/dLkUqAmqcb4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="youtube-link-card">
+                    <iframe src="https://www.youtube.com/embed/BDq_-y1JSgo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </div>
 
             <!-- Tags Section -->
