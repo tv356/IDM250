@@ -23,7 +23,7 @@
                             'post__not_in' => array($post->ID) 
                     );
                 $related_query = new WP_Query($query_args);
-                    //Nếu không có kết quả các bài viết cùng danh mục, tiếp tục lấy cùng thẻ (tag)
+
                     if( !$related_query->have_posts() ) { 
                         $tags = wp_get_post_tags($post->ID);
                         $tag_ids = array();
@@ -38,7 +38,7 @@
                         $related_query = new WP_Query($query_args);
                     }
 
-                    //Nếu không có kết quả các bài viết cùng danh mục, tiếp tục lấy bài viết mới nhất
+                  
                     if( !$related_query->have_posts() ) {   
                         $query_args = array(  
                                         'post_type' => $post_type,
@@ -49,7 +49,7 @@
                         $related_query = new WP_Query( $query_args );
                     }
 
-                    //Hiển thị danh sách
+     
                     if( $related_query->have_posts() ) { 
                         $category = get_the_category(); 
                     ?>
