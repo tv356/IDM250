@@ -4,9 +4,9 @@
             <div class="footer_menu">
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">menu</a></li>
-                    <li><a href="#">CAMPAIGNS</a></li>
-                    <li><a href="#">BLIND BOXES</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Products</a></li>
                 </ul>
             </div>
             <div class="copy_right">
